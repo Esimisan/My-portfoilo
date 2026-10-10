@@ -26,7 +26,7 @@
   display: block;
   width: clamp(4.5rem, 10vw, 6rem);
   aspect-ratio: 1;
-  border-radius: 40%;
+  border-radius: 48%;
   object-fit: cover;
   background: var(--bg-light); /* neutral circle if the image is missing */
   border: 0.1875rem solid var(--edge-highlight);
