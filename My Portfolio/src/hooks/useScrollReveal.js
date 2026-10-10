@@ -39,7 +39,7 @@ export default function useScrollReveal() {
     items.forEach((el) => {
       // small stagger between siblings (project rows, tech stack logos...)
       const index = Array.from(el.parentElement.children).indexOf(el);
-      el.style.setProperty("--reveal-delay", `${Math.min(index, 6) * 70}ms`);
+      el.style.setProperty("--reveal-delay", `${Math.min(index, 6) * 60}ms`);
       el.classList.add("reveal");
       observer.observe(el);
     });
