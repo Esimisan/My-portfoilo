@@ -1,0 +1,181 @@
+/* ==========================================================================
+   Projects
+   - sits on the page card's warm surface, right below the tech stack's
+     rounded bottom corners (the stack already adds its own bottom space)
+   - header follows the reference "Services" block: gradient heading, then a
+     hairline divider with a pill label centered on it. The JSX order is
+     eyebrow then heading, so CSS reorders them with `order`.
+   - projects are a list of rows separated by hairlines (no cards): stacked
+     on small screens, a four-column grid from 48em up
+   - colors, radius and font come only from the tokens in index.css
+   ========================================================================== */
+section.projects {
+  padding: clamp(3rem, 7vw, 5rem) 5% clamp(4rem, 9vw, 7rem);
+  background: var(--bg-warm);
+  scroll-margin-top: 1rem;
+}
+
+/* ---- Header: heading, then hairline with a pill on it ------------------ */
+.projects__header {
+  display: grid;
+  justify-items: center;
+  gap: clamp(1.25rem, 3vw, 2rem);
+  margin-bottom: clamp(1.5rem, 4vw, 2.5rem);
+
+  /* the hairline: 1px line sitting at the vertical middle of the pill
+     (pill height is 1.5rem, so its middle is 0.75rem from the bottom) */
+  background: linear-gradient(var(--line), var(--line)) center bottom 0.75rem /
+    100% 1px no-repeat;
+}
+
+.projects__heading {
+  order: 1;
+  margin: 0;
+  color: var(--ink); /* fallback if background-clip: text is unsupported */
+  font-size: clamp(1.5rem, 1rem + 1.8vw, 2.25rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+@supports (background-clip: text) or (-webkit-background-clip: text) {
+  .projects__heading {
+    background-image: linear-gradient(
+      90deg,
+      var(--ink) 25%,
+      var(--ink-fade) 90%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
+
+.projects__eyebrow {
+  order: 2;
+  display: inline-flex;
+  align-items: center;
+  height: 2em; /* with 0.75rem font = 1.5rem, matches the hairline offset above */
+  padding-inline: 1.25em;
+  border: 1px solid var(--edge-highlight);
+  border-radius: 100em;
+  background: var(--edge-highlight);
+  color: var(--text-title);
+  font-size: 0.75rem;
+  line-height: 1;
+}
+
+/* ---- List --------------------------------------------------------------- */
+.projects__list {
+  max-width: 70rem;
+  margin-inline: auto;
+  border-bottom: 1px solid var(--line);
+}
+
+/* small screens: one column, everything stacked */
+.project-item {
+  display: grid;
+  gap: 1rem;
+  padding-block: clamp(1.5rem, 4vw, 2.25rem);
+  border-top: 1px solid var(--line);
+}
+
+.project-item__number {
+  color: var(--text-body);
+  font-size: 0.75rem;
+  line-height: 1.4;
+}
+
+.project-item__category {
+  margin-bottom: 0.4rem;
+  color: var(--text-nav);
+  font-size: 0.75rem;
+  line-height: 1.4;
+}
+
+.project-item__title {
+  color: var(--text-title);
+  font-size: 1.0625rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+  transition: color 0.2s ease;
+}
+
+.project-item:hover .project-item__title {
+  color: var(--ink);
+}
+
+.project-item__description {
+  margin-bottom: 1.25rem;
+  color: var(--text-body);
+  font-size: 0.8125rem;
+  line-height: 1.7;
+}
+
+.project-item__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.project-item__tags li {
+  padding: 0.4em 0.9em;
+  border: 1px solid var(--edge-highlight);
+  border-radius: 100em;
+  background: var(--bg-light);
+  color: var(--text-nav);
+  font-size: 0.6875rem;
+  line-height: 1.2;
+}
+
+/* pill link, same look as .pill in the header */
+.project-item__link {
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  padding: 0.75em 1.4em;
+  border: 1px solid var(--edge-highlight);
+  border-radius: 100em;
+  background: var(--edge-highlight);
+  color: var(--text-title);
+  font-size: 0.8125rem;
+  line-height: 1.2;
+  white-space: nowrap;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.project-item__link:hover {
+  background: var(--ink-button);
+  border-color: var(--ink-button);
+  color: var(--bg-light);
+}
+
+.project-item__link:focus-visible {
+  outline: 0.125rem solid var(--ink-button);
+  outline-offset: 0.25rem;
+}
+
+/* ---- Larger screens: number | title | description + tags | link --------- */
+@media (min-width: 48em) {
+  .project-item {
+    grid-template-columns: 2.5rem minmax(0, 1fr) minmax(0, 1.5fr) auto;
+    align-items: start;
+    column-gap: clamp(1.5rem, 3vw, 3rem);
+  }
+
+  .project-item__link {
+    justify-self: end;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-item__title,
+  .project-item__link {
+    transition: none;
+  }
+}

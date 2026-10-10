@@ -1,0 +1,113 @@
+/* ==========================================================================
+   About
+   - same header pattern as Projects: gradient heading, then a hairline with
+     a pill label centered on it (eyebrow comes first in the JSX, CSS
+     reorders it with `order`)
+   - text is a narrow centered column; the facts row is a fr grid that wraps
+     by itself, so no media queries
+   - colors, radius and font come only from the tokens in index.css
+   ========================================================================== */
+section.about {
+  padding: clamp(3rem, 7vw, 5rem) 5% clamp(4rem, 9vw, 7rem);
+  background: var(--bg-warm);
+  scroll-margin-top: 1rem;
+}
+
+/* ---- Header: heading, then hairline with a pill on it ------------------ */
+.about__header {
+  display: grid;
+  justify-items: center;
+  gap: clamp(1.25rem, 3vw, 2rem);
+  margin-bottom: clamp(1.5rem, 4vw, 2.5rem);
+
+  /* pill height is 1.5rem, so its middle is 0.75rem from the bottom */
+  background: linear-gradient(var(--line), var(--line)) center bottom 0.75rem /
+    100% 1px no-repeat;
+}
+
+.about__heading {
+  order: 1;
+  margin: 0;
+  max-width: 18em;
+  color: var(--ink); /* fallback if background-clip: text is unsupported */
+  font-size: clamp(1.5rem, 1rem + 1.8vw, 2.25rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  text-align: center;
+  text-wrap: balance;
+}
+
+@supports (background-clip: text) or (-webkit-background-clip: text) {
+  .about__heading {
+    background-image: linear-gradient(
+      90deg,
+      var(--ink) 25%,
+      var(--ink-fade) 90%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
+
+.about__eyebrow {
+  order: 2;
+  display: inline-flex;
+  align-items: center;
+  height: 2em; /* with 0.75rem font = 1.5rem, matches the hairline offset */
+  padding-inline: 1.25em;
+  border: 1px solid var(--edge-highlight);
+  border-radius: 100em;
+  background: var(--edge-highlight);
+  color: var(--text-title);
+  font-size: 0.75rem;
+  line-height: 1;
+}
+
+/* ---- Text --------------------------------------------------------------- */
+.about__text {
+  display: grid;
+  gap: 1.25rem;
+  max-width: 40rem;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.about__text p {
+  color: var(--text-body);
+  font-size: 0.9375rem;
+  line-height: 1.8;
+}
+
+/* the opening line reads a little stronger, like a lead-in */
+.about__text p:first-child {
+  color: var(--text-title);
+}
+
+/* ---- Facts row ---------------------------------------------------------- */
+.about__facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
+  gap: 1.5rem 2rem;
+  max-width: 50rem;
+  margin: clamp(2rem, 5vw, 3.5rem) auto 0;
+  padding-top: clamp(1.5rem, 4vw, 2.25rem);
+  border-top: 1px solid var(--line);
+  text-align: center;
+}
+
+.about__label {
+  margin-bottom: 0.4rem;
+  color: var(--text-nav);
+  font-size: 0.75rem;
+  line-height: 1.4;
+}
+
+.about__value {
+  margin: 0;
+  color: var(--text-title);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1.5;
+}

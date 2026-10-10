@@ -1,0 +1,121 @@
+/* ==========================================================================
+   Header
+   - position: absolute, so it sits at the very top of .page and scrolls away
+     with it (not fixed, not sticky)
+   - no hamburger: the two groups simply wrap onto two rows on narrow screens
+   - sizes in rem/em/%; 1px is used only for hairline borders
+   ========================================================================== */
+.header {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 10;
+
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem; /* row-gap column-gap */
+
+  padding: 1.5rem 5%;
+  font-size: 0.75rem; /* everything inside is sized in em from here */
+}
+
+/* ---- Left group: email + pills ---------------------------------------- */
+.header__contact {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5em;
+  min-width: 0;
+}
+
+.header__email {
+  margin-right: 0.5em;
+  color: var(--text-nav);
+  overflow-wrap: anywhere;
+}
+
+.pill {
+  display: inline-block;
+  padding: 0.55em 1.25em;
+  border: 1px solid var(--edge-highlight);
+  border-radius: 100em;
+  background: var(--edge-highlight);
+  color: var(--text-title);
+  line-height: 1.2;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.pill:hover {
+  background: var(--ink-button);
+  border-color: var(--ink-button);
+  color: var(--bg-light);
+}
+
+/* ---- Right group: anchor links ---------------------------------------- */
+.header__links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6em;
+}
+
+/* Slash separators between links, drawn in CSS so the markup stays a clean list.
+   The first declaration is the fallback; the second hides it from screen readers. */
+.header__links li + li::before {
+  content: "/";
+  content: "/" / "";
+  margin-right: 0.6em;
+  color: var(--text-body);
+}
+
+.header__links li {
+  display: flex;
+  align-items: center;
+}
+
+.header__link {
+  color: var(--text-nav);
+  transition: color 0.2s ease;
+}
+
+.header__link:hover {
+  color: var(--ink);
+}
+
+/* ---- Keyboard focus ---------------------------------------------------- */
+.pill:focus-visible,
+.header__link:focus-visible {
+  outline: 0.125rem solid var(--ink-button);
+  outline-offset: 0.2em;
+  border-radius: 0.25em;
+}
+
+.pill:focus-visible {
+  border-radius: 100em;
+}
+
+/* ---- Larger screens: slightly bigger type, more breathing room --------- */
+@media (min-width: 48em) {
+  .header {
+    padding-block: 2rem;
+    font-size: 0.8125rem;
+  }
+}
+
+/* ---- Small screens: when the groups wrap, center both rows ------------- */
+@media (max-width: 40em) {
+  .header {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .header__contact {
+    justify-content: center;
+  }
+}

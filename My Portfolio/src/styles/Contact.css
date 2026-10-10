@@ -1,0 +1,266 @@
+/* ==========================================================================
+   Contact
+   - light surface with rounded top corners (like the "Tell me about your next
+     project" block in the reference); the page card's warm background shows
+     behind the curves
+   - small screens: intro, then form, stacked; from 48em: two columns
+   - colors, radius and font come only from the tokens in index.css
+   ========================================================================== */
+section.contact {
+  padding: clamp(3.5rem, 8vw, 6rem) 5% clamp(4rem, 9vw, 6.5rem);
+  background: var(--bg-light);
+  border-radius: var(--hero-radius) var(--hero-radius) 0 0;
+  scroll-margin-top: 1rem;
+}
+
+.contact__inner {
+  display: grid;
+  gap: clamp(2rem, 5vw, 3rem);
+  max-width: 70rem;
+  margin-inline: auto;
+}
+
+/* ---- Intro -------------------------------------------------------------- */
+.contact__intro {
+  display: grid;
+  justify-items: start;
+  align-content: start;
+  gap: clamp(1rem, 2.5vw, 1.5rem);
+}
+
+.contact__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.55em 1.25em;
+  border: 1px solid var(--line);
+  border-radius: 100em;
+  background: var(--bg-warm);
+  color: var(--text-title);
+  font-size: 0.75rem;
+  line-height: 1.2;
+}
+
+.contact__heading {
+  margin: 0;
+  max-width: 10em;
+  color: var(--ink); /* fallback if background-clip: text is unsupported */
+  font-size: clamp(1.75rem, 1.1rem + 3.2vw, 3.25rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+@supports (background-clip: text) or (-webkit-background-clip: text) {
+  .contact__heading {
+    background-image: linear-gradient(
+      90deg,
+      var(--ink) 25%,
+      var(--ink-fade) 90%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
+
+.contact__lead {
+  max-width: 28rem;
+  color: var(--text-body);
+  font-size: 0.9375rem;
+  line-height: 1.8;
+}
+
+.contact__email {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7em;
+  color: var(--text-title);
+  font-size: 0.9375rem;
+  overflow-wrap: anywhere;
+  transition: color 0.2s ease;
+}
+
+.contact__email:hover {
+  color: var(--ink);
+}
+
+.contact__status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  padding: 0.55em 1.1em;
+  border: 1px solid var(--line);
+  border-radius: 100em;
+  background: var(--bg-warm);
+  color: var(--text-title);
+  font-size: 0.75rem;
+  line-height: 1.2;
+}
+
+.contact__dot {
+  width: 0.5em;
+  height: 0.5em;
+  border-radius: 50%;
+  background: var(--ink-button);
+}
+
+/* icons: 1.25em square, take the color of the text beside them */
+.contact__icon {
+  flex: none;
+  width: 1.25em;
+  height: 1.25em;
+}
+
+/* ---- Form panel --------------------------------------------------------- */
+.contact__form {
+  display: grid;
+  gap: 1.25rem;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  border: 1px solid var(--edge-highlight);
+  border-radius: 1.5rem;
+  background: var(--bg-warm);
+}
+
+.contact__row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
+  gap: 1.25rem;
+}
+
+.contact__field {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.contact__label {
+  color: var(--text-nav);
+  font-size: 0.75rem;
+  line-height: 1.2;
+}
+
+.contact__input {
+  width: 100%;
+  padding: 0.85em 1.1em;
+  border: 1px solid var(--edge-highlight);
+  border-radius: 0.875rem;
+  background: var(--bg-light);
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  transition: border-color 0.2s ease;
+}
+
+.contact__input::placeholder {
+  color: var(--text-body);
+  opacity: 1;
+}
+
+.contact__input:hover {
+  border-color: var(--line);
+}
+
+.contact__input:focus-visible {
+  outline: 0.125rem solid var(--ink-button);
+  outline-offset: 0.125rem;
+  border-color: var(--ink-button);
+}
+
+.contact__textarea {
+  min-height: 9rem;
+  resize: vertical;
+}
+
+/* dark pill button, same look as .btn in the hero, full width like the reference */
+.contact__submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6em;
+  width: 100%;
+  padding: 1em 1.7em;
+  border: 0;
+  border-radius: 100em;
+  background: var(--ink-button);
+  color: var(--bg-light);
+  font-size: 0.8125rem;
+  line-height: 1.2;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.contact__submit:hover {
+  background: var(--ink);
+  transform: translateY(-0.125rem);
+}
+
+.contact__submit:focus-visible {
+  outline: 0.125rem solid var(--ink-button);
+  outline-offset: 0.25rem;
+}
+
+.contact__status {
+  min-height: 1.2em; /* reserves the line so the layout doesn't jump */
+  margin: 0;
+  color: var(--text-nav);
+  font-size: 0.75rem;
+  line-height: 1.2;
+  text-align: center;
+}
+
+/* ---- Social links under the form ---------------------------------------- */
+.contact__socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 2rem;
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--line);
+}
+
+.contact__social {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  color: var(--text-nav);
+  font-size: 0.8125rem;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+  transition: color 0.2s ease;
+}
+
+.contact__social:hover {
+  color: var(--ink);
+}
+
+.contact__social:focus-visible,
+.contact__email:focus-visible {
+  outline: 0.125rem solid var(--ink-button);
+  outline-offset: 0.2em;
+  border-radius: 0.25em;
+}
+
+/* ---- Larger screens: intro on the left, form on the right --------------- */
+@media (min-width: 48em) {
+  .contact__inner {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
+    align-items: start;
+    column-gap: clamp(2rem, 5vw, 5rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact__submit,
+  .contact__input,
+  .contact__email,
+  .contact__social {
+    transition: none;
+  }
+
+  .contact__submit:hover {
+    transform: none;
+  }
+}

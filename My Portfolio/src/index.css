@@ -1,0 +1,157 @@
+:root {
+  color-scheme: light; /* NEW: tells the browser to draw form controls and scrollbars in light */
+
+  /* Surfaces */
+  --bg-page: #d6d5d1; /* outer backdrop behind the page card */
+  --bg-warm: #f0efed; /* hero + services surface (warm grey) */
+  --bg-light: #f8f8f8; /* logo strip, CTA, footer surface (near white) */
+  --edge-highlight: #fffffd; /* light edge on pills, chip, avatar ring */
+
+  /* Ink */
+  --ink: #0c0c0c; /* headline black */
+  --ink-button: #242424; /* dark buttons */
+  --ink-fade: #595856; /* where headlines fade out */
+  --text-title: #454442; /* small titles */
+  --text-nav: #767573; /* nav links, small UI text */
+  --text-body: #888785; /* descriptions */
+
+  /* Lines */
+  --line: #eeedeb; /* hairline dividers */
+
+  /* Shape */
+  --hero-radius: clamp(
+    2rem,
+    9vw,
+    6rem
+  ); /* page card corners + hero bottom corners */
+
+  /* Type: Figtree (variable), installed via @fontsource-variable/figtree */
+  --font-sans:
+    "Figtree Variable", system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+}
+
+/* ==========================================================================
+   Dark theme (NEW)
+   - same token names, same layering as light: backdrop < warm < light
+   - low contrast on purpose: off-white ink, soft greys, no pure black/white
+   - the dark button inverts (light button, dark text) because buttons use
+     --ink-button as background and --bg-light as text
+   - switched by ThemeToggle.jsx, which sets data-theme on <html>
+   ========================================================================== */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  /* Surfaces */
+  --bg-page: #121211; /* outer backdrop (darkest) */
+  --bg-warm: #1c1c1a; /* hero + services surface */
+  --bg-light: #252523; /* logo strip, CTA, footer surface (lightest) */
+  --edge-highlight: #31302e; /* soft edge on pills, chip, avatar ring */
+
+  /* Ink */
+  --ink: #ecebe8; /* headline off-white */
+  --ink-button: #d8d7d4; /* buttons (light in dark mode) */
+  --ink-fade: #86857f; /* where headlines fade out */
+  --text-title: #cfcecb; /* small titles */
+  --text-nav: #a1a09c; /* nav links, small UI text */
+  --text-body: #8d8c88; /* descriptions */
+
+  /* Lines */
+  --line: #32312f; /* hairline dividers */
+}
+
+/* Smooth color change while toggling (NEW): ThemeToggle adds this class to
+   <html> for 0.4s, so the transition never slows down normal hovers. */
+html.theme-transition,
+html.theme-transition *,
+html.theme-transition *::before,
+html.theme-transition *::after {
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.theme-transition,
+  html.theme-transition *,
+  html.theme-transition *::before,
+  html.theme-transition *::after {
+    transition: none !important;
+  }
+}
+
+/* Reset*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 100%; /* respects the user's browser setting; 1rem = their default */
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--bg-page);
+  color: var(--text-nav);
+  font-family: var(--font-sans);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-block: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+}
+
+/* ==========================================================================
+   Page card
+   - position: relative so the absolutely-positioned header anchors to the
+     top of the card and scrolls away with it
+   - overflow: clip trims children to the rounded corners without turning
+     the card into a scroll container
+   ========================================================================== */
+.page {
+  position: relative;
+  width: 94%;
+  max-width: 90rem;
+  margin: 3% auto;
+  background: var(--bg-warm);
+  border-radius: var(--hero-radius);
+  overflow: clip;
+}
+
+/* Put on whichever section comes right after the hero: pulls it up behind
+   the hero's rounded bottom corners so the lighter surface shows through.
+   Declared after .placeholder so its padding wins. */
+.under-hero {
+  margin-top: calc(var(--hero-radius) * -1);
+  padding-top: calc(var(--hero-radius) + 2rem);
+  background: var(--bg-light);
+}

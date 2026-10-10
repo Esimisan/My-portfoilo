@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="/My Portfolio/src/index.css" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.jpg" />
+    <meta name="og:title" content="AkraDev | I build websites" />
+    <meta name="og:title" content="/favicon.jpg" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Esimisan's-portfolio</title>
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem("theme");
+          var theme =
+            saved ||
+            (window.matchMedia("(prefers-color-scheme: dark)").matches
+              ? "dark"
+              : "light");
+          document.documentElement.setAttribute("data-theme", theme);
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

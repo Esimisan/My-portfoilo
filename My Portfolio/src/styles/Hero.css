@@ -1,0 +1,125 @@
+/* ==========================================================================
+   Hero
+   - the card shape comes from the big bottom radius (--hero-radius, set in
+     index.css); z-index lifts it above the next section so those rounded
+     corners reveal the lighter surface behind them
+   - everything is sized in rem / em / % / clamp()
+   ========================================================================== */
+.hero {
+  position: relative;
+  z-index: 1;
+
+  padding: clamp(6rem, 14vw, 9rem) 5% clamp(4rem, 9vw, 7rem);
+  background: var(--bg-warm);
+  border-radius: 0 0 var(--hero-radius) var(--hero-radius);
+}
+
+.hero__inner {
+  display: grid;
+  justify-items: center;
+  gap: clamp(1.25rem, 3vw, 2rem);
+  max-width: 40rem;
+  margin-inline: auto;
+  text-align: center;
+}
+
+/* ---- Avatar + name chip ------------------------------------------------ */
+.hero__avatar-wrap {
+  --chip-tilt: -10deg;
+  position: relative;
+}
+
+.hero__avatar {
+  display: block;
+  width: clamp(4.5rem, 10vw, 6rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--bg-light); /* neutral circle if the image is missing */
+  border: 0.1875rem solid var(--edge-highlight);
+}
+
+.hero__chip {
+  position: absolute;
+  bottom: 12%;
+  left: 68%;
+
+  padding: 0.4em 0.9em;
+  border-radius: 100em;
+  background: var(--edge-highlight);
+  box-shadow: 0 0.25rem 0.75rem rgb(0 0 0 / 0.06);
+  color: var(--text-title);
+  font-size: 0.6875rem;
+  line-height: 1.2;
+  white-space: nowrap;
+  transform: rotate(var(--chip-tilt));
+}
+
+/* ---- Headline ---------------------------------------------------------- */
+/* The gradient runs across the whole text block, so each line is darkest on
+   the left and fades toward the right, like the reference. */
+.hero__title {
+  margin: 0;
+  max-width: 14em;
+  color: var(--ink); /* fallback if background-clip: text is unsupported */
+  font-size: clamp(1.75rem, 1.1rem + 3.2vw, 3.25rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+@supports (background-clip: text) or (-webkit-background-clip: text) {
+  .hero__title {
+    background-image: linear-gradient(
+      90deg,
+      var(--ink) 25%,
+      var(--ink-fade) 90%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
+
+/* ---- Button ------------------------------------------------------------ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+
+  padding: 0.9em 1.7em;
+  border-radius: 100em;
+  background: var(--ink-button);
+  color: var(--bg-light);
+  font-size: 0.8125rem;
+  line-height: 1.2;
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.btn:hover {
+  background: var(--ink);
+  transform: translateY(-0.125rem);
+}
+
+.btn:focus-visible {
+  outline: 0.125rem solid var(--ink-button);
+  outline-offset: 0.25rem;
+}
+
+.btn__icon {
+  width: 0.9em;
+  height: 0.9em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn {
+    transition: none;
+  }
+
+  .btn:hover {
+    transform: none;
+  }
+}

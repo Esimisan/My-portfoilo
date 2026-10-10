@@ -1,0 +1,41 @@
+Techstack · CSS
+/* ==========================================================================
+   Tech stack
+   - top padding and the pull-up behind the hero come from .under-hero
+     (index.css), so this file only sets the other padding sides
+   - the grid uses fr columns and wraps by itself, so no media queries
+   - the bottom corners use the same radius as the hero; the page card's
+     warm background shows through behind them
+   ========================================================================== */
+.stack {
+  padding-inline: 6%;
+  padding-block-end: var(--hero-radius);
+  border-radius: 0 0 var(--hero-radius) var(--hero-radius);
+  scroll-margin-top: 1rem;
+}
+
+.stack__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 10rem), 1fr));
+  align-items: center;
+  gap: 2rem 1rem; /* row-gap column-gap */
+  padding-bottom: 2rem;
+}
+
+.stack__item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6em;
+
+  color: var(--text-title);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.stack__logo {
+  flex: none;
+  width: 1.6em;
+  height: 1.6em;
+}

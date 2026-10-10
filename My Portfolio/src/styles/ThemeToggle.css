@@ -1,0 +1,13 @@
+/* Reuses .pill from Header.css for shape, colors and hover; this only sets
+   the icon size and keeps the button the same height as the other pills. */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding-block: 0.45em;
+}
+
+.theme-toggle__icon {
+  width: 1.1em;
+  height: 1.1em;
+}
