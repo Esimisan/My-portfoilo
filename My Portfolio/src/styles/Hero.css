@@ -1,10 +1,3 @@
-/* ==========================================================================
-   Hero
-   - the card shape comes from the big bottom radius (--hero-radius, set in
-     index.css); z-index lifts it above the next section so those rounded
-     corners reveal the lighter surface behind them
-   - everything is sized in rem / em / % / clamp()
-   ========================================================================== */
 .hero {
   position: relative;
   z-index: 1;
@@ -33,7 +26,7 @@
   display: block;
   width: clamp(4.5rem, 10vw, 6rem);
   aspect-ratio: 1;
-  border-radius: 50%;
+  border-radius: 40%;
   object-fit: cover;
   background: var(--bg-light); /* neutral circle if the image is missing */
   border: 0.1875rem solid var(--edge-highlight);
