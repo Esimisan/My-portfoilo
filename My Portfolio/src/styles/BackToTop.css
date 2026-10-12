@@ -1,5 +1,3 @@
-/* Fixed to the screen's bottom-right corner; hidden until the page has been
-   scrolled about one screen. Keeps clear of phone safe areas. */
 .back-to-top {
   position: fixed;
   right: max(1rem, env(safe-area-inset-right, 0px));

@@ -1,7 +1,7 @@
 import "../styles/Hero.css";
 
 const NAME = "Akra Esimisan";
-const AVATAR_SRC = "/avatar.jpeg"; // put avatar.jpeg inside the public/ folder
+const AVATAR_SRC = "/avatar.jpeg";
 
 export default function Hero() {
   return (

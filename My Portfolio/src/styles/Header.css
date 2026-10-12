@@ -1,10 +1,3 @@
-/* ==========================================================================
-   Header
-   - position: absolute, so it sits at the very top of .page and scrolls away
-     with it (not fixed, not sticky)
-   - no hamburger: the two groups simply wrap onto two rows on narrow screens
-   - sizes in rem/em/%; 1px is used only for hairline borders
-   ========================================================================== */
 .header {
   position: absolute;
   top: 0;

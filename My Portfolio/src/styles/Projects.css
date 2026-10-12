@@ -1,14 +1,3 @@
-/* ==========================================================================
-   Projects
-   - sits on the page card's warm surface, right below the tech stack's
-     rounded bottom corners (the stack already adds its own bottom space)
-   - header follows the reference "Services" block: gradient heading, then a
-     hairline divider with a pill label centered on it. The JSX order is
-     eyebrow then heading, so CSS reorders them with `order`.
-   - projects are a list of rows separated by hairlines (no cards): stacked
-     on small screens, a four-column grid from 48em up
-   - colors, radius and font come only from the tokens in index.css
-   ========================================================================== */
 section.projects {
   padding: clamp(3rem, 7vw, 5rem) 5% clamp(4rem, 9vw, 7rem);
   background: var(--bg-warm);

@@ -80,8 +80,6 @@ function Contact() {
   }
 
   // Opens the visitor's email app with everything filled in.
-  // To send straight from the site instead, replace the body of this
-  // function with a request to a form service (Formspree, EmailJS, ...).
   function handleSubmit(event) {
     event.preventDefault();
 

@@ -1,11 +1,3 @@
-/* ==========================================================================
-   Contact
-   - light surface with rounded top corners (like the "Tell me about your next
-     project" block in the reference); the page card's warm background shows
-     behind the curves
-   - small screens: intro, then form, stacked; from 48em: two columns
-   - colors, radius and font come only from the tokens in index.css
-   ========================================================================== */
 section.contact {
   padding: clamp(3.5rem, 8vw, 6rem) 5% clamp(4rem, 9vw, 6.5rem);
   background: var(--bg-light);
