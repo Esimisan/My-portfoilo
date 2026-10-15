@@ -30,6 +30,24 @@ const projects = [
     link: "https://github.com/Esimisan/Virtual-Screening-of-Natural-Compounds-Against-Acetylcholinesterase",
     linkLabel: "View on GitHub",
   },
+  {
+    id: 4,
+    category: "Fullstack · Computational Drug Discovery",
+    title: "MolecuLens",
+    description:
+      "MolecuLens is a full-stack web app for exploring chemistry and biology data. It pulls live compound data from PubChem and protein structures from the RCSB Protein Data Bank, shows interactive 3D models with Mol*, lets you compare two molecules side by side, and saves favourites to a personal account. Built with React, Express and Turso (hosted SQLite), deployed on Vercel and Render.",
+    tags: [
+      "JavaScript",
+      "React",
+      "Vercel",
+      "Render",
+      "Turso",
+      "Pubchem",
+      "RCSB PBD",
+    ],
+    link: "https://moleculens.vercel.app/",
+    linkLabel: "Live demo",
+  },
 ];
 
 export default projects;
