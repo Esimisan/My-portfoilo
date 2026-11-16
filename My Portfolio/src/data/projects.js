@@ -48,6 +48,24 @@ const projects = [
     link: "https://moleculens.vercel.app/",
     linkLabel: "Live demo",
   },
+  {
+    id: 5,
+    category: "Fullstack . Business Software",
+    title: "Ledgerly",
+    description:
+      "A business management web app for small businesses, covering products and inventory, sales with printable receipts, a customer database with credit tracking, expenses, purchase orders and analytics. Supports staff roles, multiple businesses per user and light/dark mode. Built with React and Supabase, with each business’s data locked down by row-level security and deployed on Vercel.",
+    tags: [
+      "JavaScript",
+      "React",
+      "Vite",
+      "Supabase",
+      "PostgreSQL",
+      "Row Level Security",
+      "Vercel",
+    ],
+    link: "https://ledgerly-gules-one.vercel.app",
+    linkLabel: "Live demo",
+  },
 ];
 
 export default projects;
